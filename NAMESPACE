@@ -1,0 +1,3 @@
+useDynLib(twine)
+exportPattern("^[[:alpha:]]+")
+export(twlen, twtoken, twmatch, twtoUpper, twtoLower)
