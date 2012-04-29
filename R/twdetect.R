@@ -13,7 +13,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with twine.  If not, see <http://www.gnu.org/licenses/>.
 
-twmatch <- function
+twdetect <- function
 ### Takes a vector of strings, and a regular expression,
 ### and returns a list of booleans for each potential match.
 (v,          ##<< the string vector
@@ -22,7 +22,7 @@ twmatch <- function
  ) {
 
     ## Make the call...
-    val <- .Call("twmatch",
+    val <- .Call("twdetect",
                  as.character(v),
                  as.character(pattern),
                  as.integer(full),

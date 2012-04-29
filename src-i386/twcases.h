@@ -1,5 +1,5 @@
-#ifndef _twine_TWMATCH_H
-#define _twine_TWMATCH_H
+#ifndef _twine_TWCASES_H
+#define _twine_TWCASES_H
 #include <Rcpp.h>
 /*
 * note : RcppExport is an alias to ‘extern ”C”‘ defined by Rcpp. *
@@ -9,5 +9,10 @@
 * It is only useful to use RcppExport when the function is intended to be called
 * by .Call. See the thread http://thread.gmane.org/gmane.comp.lang.r.rcpp/649/focus=672
 * on Rcpp-devel for a misuse of RcppExport */
-RcppExport SEXP twmatch(const SEXP vec, const SEXP regex, const SEXP fullmatch) ;
+
+RcppExport SEXP twtoUpper(SEXP vec) ;
+RcppExport SEXP twtoLower(SEXP vec) ;
+
+
+
 #endif

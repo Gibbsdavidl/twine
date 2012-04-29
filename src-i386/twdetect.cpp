@@ -14,7 +14,7 @@ using std::cout;
  
 // SEXP is a pointer to an SEXPREC object:
 
-RcppExport SEXP twmatch(const SEXP v, const SEXP r, const SEXP b) {
+RcppExport SEXP twdetect(const SEXP v, const SEXP r, const SEXP b) {
     BEGIN_RCPP
     vector<string> text = as< vector<string> >(v);
     string pattern = as<string>(r);
@@ -22,8 +22,6 @@ RcppExport SEXP twmatch(const SEXP v, const SEXP r, const SEXP b) {
     vector<bool> results;
     pcrecpp::RE re(pattern, pcrecpp::UTF8());
     vector<string>::iterator textIterator;
-
-    cout << "The pattern is: " << re.pattern() << " the switch is: " << fullmatch << "\n";
 
     if (fullmatch == 1) {
       for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
