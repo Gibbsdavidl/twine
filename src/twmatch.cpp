@@ -1,10 +1,7 @@
 #include "twmatch.h"
 #include <vector>
-#include <stdlib.h>
 #include <string>
 #include <pcrecpp.h>
-#include <iostream>
-//#include <pcre.h>
 
 using Rcpp::as;
 using std::vector;
@@ -12,28 +9,30 @@ using std::string;
 using std::cout;
 
  
-// SEXP is a pointer to an SEXPREC object:
-
 RcppExport SEXP twmatch(const SEXP v, const SEXP r, const SEXP b) {
     BEGIN_RCPP
     vector<string> text = as< vector<string> >(v);
     string pattern = as<string>(r);
     int fullmatch = as<int>(b);
-    vector<bool> results;
-    pcrecpp::RE re(pattern, pcrecpp::UTF8());
     vector<string>::iterator textIterator;
-
-    cout << "The pattern is: " << re.pattern() << " the switch is: " << fullmatch << "\n";
-
+    vector<string> results; 
+    string s;
+    
+    pcrecpp::RE re(pattern);
     if (fullmatch == 1) {
       for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
-	results.push_back(re.FullMatch(*textIterator));
+	s = "";
+	re.FullMatch(*textIterator, &s);
+	results.push_back(s);
       }
-    } else {
+    } else { // if fullmatch == 0
       for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
-	results.push_back(re.PartialMatch(*textIterator));
+	s = "";
+	re.PartialMatch(*textIterator, &s);
+	results.push_back(s);
       }
     }
+
     return(Rcpp::wrap(results));
     END_RCPP
 }

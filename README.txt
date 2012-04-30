@@ -54,3 +54,21 @@ library(twine)
 ?twtoLower
 
 *********************************************************************
+// -----------------------------------------------------------------------
+// REGEXP SYNTAX:
+//
+// This module is part of the pcre library and hence supports its syntax
+// for regular expressions.
+//
+// The syntax is pretty similar to Perl's.  For those not familiar
+// with Perl's regular expressions, here are some examples of the most
+// commonly used extensions:
+//
+//   "hello (\\w+) world"  -- \w matches a "word" character
+//   "version (\\d+)"      -- \d matches a digit
+//   "hello\\s+world"      -- \s matches any whitespace character
+//   "\\b(\\w+)\\b"        -- \b matches empty string at a word boundary
+//   "(?i)hello"           -- (?i) turns on case-insensitive matching
+//   "/\\*(.*?)\\*/"       -- .*? matches . minimum no. of times possible
+//
+// -----------------------------------------------------------------------
