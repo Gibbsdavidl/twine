@@ -1,4 +1,4 @@
-## This file is part of strvec.
+## This file is part of twine.
 ##
 ## This is free software: you can redistribute it and/or modify it
 ## under the terms of the GNU General Public License as published by
@@ -11,34 +11,21 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with strvec.  If not, see <http://www.gnu.org/licenses/>.
+## along with twine.  If not, see <http://www.gnu.org/licenses/>.
 
-twupper <- function
-### Takes a vector of strings and returns a vector of str lengths.
-(vec ##<< the string vector
+twlocate <- function
+### Takes a vector of strings, and a regular expression,
+### and returns a list of booleans for each potential match.
+(v,          ##<< the string vector
+ pattern     ##<< a regular expression.
  ) {
 
     ## Make the call...
-    val <- .Call("twtoUpper",
-                 vec,
+    val <- .Call("twlocate",
+                 as.character(v),
+                 as.character(pattern),
                  PACKAGE="twine")
 
     val
     ### returns the vector of string lengths
   }
-
-
-twlower <- function
-### Takes a vector of strings and returns a vector of str lengths.
-(vec ##<< the string vector
- ) {
-
-    ## Make the call...
-    val <- .Call("twtoLower",
-                 vec,
-                 PACKAGE="twine")
-
-    val
-    ### returns the vector of string lengths
-  }
-
