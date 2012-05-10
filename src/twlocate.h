@@ -1,5 +1,5 @@
-#ifndef _twine_TWMATCH_H
-#define _twine_TWMATCH_H
+#ifndef _twine_TWLOCATE_H
+#define _twine_TWLOCATE_H
 #include <Rcpp.h>
 
 /*

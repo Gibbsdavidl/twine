@@ -25,7 +25,7 @@ RcppExport SEXP twlocate(const SEXP v, const SEXP r) {
       start = (char*)input.data();
       re.FindAndConsume(&input, &s);
       end = (char*)input.data();
-      results.push_back(end-start-s.size());
+      results.push_back(end-start-s.size()+1);
     }
 
     return(Rcpp::wrap(results));

@@ -1,5 +1,5 @@
-#ifndef _twine_TWLOCATE_H
-#define _twine_TWLOCATE_H
+#ifndef _twine_TWSPLIT_H
+#define _twine_TWSPLIT_H
 #include <Rcpp.h>
 
 /*
@@ -10,5 +10,5 @@
 * It is only useful to use RcppExport when the function is intended to be called
 * by .Call. See the thread http://thread.gmane.org/gmane.comp.lang.r.rcpp/649/focus=672
 * on Rcpp-devel for a misuse of RcppExport */
-RcppExport SEXP twlocate(const SEXP vec, const SEXP regex) ;
+RcppExport SEXP twsplit(const SEXP vec, const SEXP regex) ;
 #endif
