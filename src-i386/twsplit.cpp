@@ -17,7 +17,7 @@ RcppExport SEXP twsplit(const SEXP v, const SEXP r) {
     vector<string>::iterator textIterator;
     vector<string> results;
     const char* error; int erroffset;
-    char *substring_start;
+    const char *substring_start;
     int substring_length;
     pcre *re;
     int rc; int i;
@@ -50,7 +50,7 @@ RcppExport SEXP twsplit(const SEXP v, const SEXP r) {
 	// we have matches.
 	for (i = 0; i < rc; i++)
 	  {
-	    substring_start = (char*)(*textIterator).data() + ovector[2*i];
+	    substring_start = (*textIterator).data() + ovector[2*i];
 	    substring_length = ovector[2*i+1] - ovector[2*i];
 	    printf("%2d: %.*s\n", i, substring_length, substring_start);
 	  }
