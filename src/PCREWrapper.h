@@ -9,7 +9,7 @@ using std::vector;
 using std::string;
 using std::cout;
 
-#define OVECSIZE 128
+#define OVECSIZE 768 // == 3 * 256
 
 class PCREWrapper
 {
@@ -17,21 +17,20 @@ class PCREWrapper
   string pattern;
   string text;
   pcre* re;
-  int textLength;
   int* ovector;
-
+  
  public:
   PCREWrapper();
-  PCREWrapper(string pattern, string text);
+  PCREWrapper(string & pattern);
+  PCREWrapper(string & pattern, string & text);
   ~PCREWrapper();
-  bool setPattern(string pattern); 
-  bool setText(string txt); 
+
+  bool setPattern(string & pattern); 
+  bool setText(string & txt); 
   int  exec(int offset);
-  void match(bool single, vector<string> res0);
-  void locate(bool single, vector<int> res0); 
-  void detect(bool single, vector<bool> res0);
-
-
+  int  match(bool single, vector<string> & res0);
+  int  locate(bool single, vector<int> & res0); 
+  int  detect(bool single, string & txt, vector<bool> & res0);
 };
 
 #endif

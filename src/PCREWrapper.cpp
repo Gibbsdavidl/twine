@@ -15,14 +15,21 @@ PCREWrapper::PCREWrapper()
   text="";
   re=NULL;
   ovector = NULL;
-  textLength=0;
 }
 
-PCREWrapper::PCREWrapper(string ptn, string txt) 
+
+PCREWrapper::PCREWrapper(string & ptn)
+{
+  setPattern(ptn);
+  text="";
+  ovector = new int[OVECSIZE];
+}
+
+
+PCREWrapper::PCREWrapper(string & ptn, string & txt) 
 {
   setPattern(ptn);
   text = txt;
-  textLength = text.size();
   ovector = new int[OVECSIZE];
 }
 
@@ -38,7 +45,7 @@ PCREWrapper::~PCREWrapper()
 }
 
 
-bool PCREWrapper::setPattern(string ptrn) 
+bool PCREWrapper::setPattern(string & ptrn) 
 {
   const char *error;
   int erroffset;
@@ -56,7 +63,7 @@ bool PCREWrapper::setPattern(string ptrn)
 }
 
 
-bool PCREWrapper::setText(string txt) 
+bool PCREWrapper::setText(string & txt) 
 {
   text = txt;
 }
@@ -74,23 +81,42 @@ int PCREWrapper::exec(int offset)
 		 0,                    /* default options */
 		 ovector,              /* output vector for substring information */
 		 OVECSIZE);            /* number of elements in the output vector */
+  if (rc < 0) {
+    switch(rc) {
+    case PCRE_ERROR_NOMATCH: printf("No match\n"); break;
+    default: printf("Matching error %d\n", rc); break;
+    }
+    return -1;
+  }  
   return(rc);
 }
 
 
-void PCREWrapper::match(bool single, vector<string> res0)
+int PCREWrapper::match(bool single, vector<string> & res0)
 {
 
+  return 1;
 }
 
 
-void PCREWrapper::locate(bool single, vector<int> res0)
+int PCREWrapper::locate(bool single, vector<int> & res0)
 {
 
+  return 1;
 }
 
 
-void PCREWrapper::detect(bool single, vector<bool> res0)
+int PCREWrapper::detect(bool single, string & txt, vector<bool> & res0)
 {
-
+  text = txt;
+  int rc = exec(0);  
+  printf("rc: %d\n", rc);
+  if (rc > 0) {
+    for (int i = 0; i < rc; i++){
+      res0.push_back(true);
+    }
+  } else {
+    res0.push_back(false);
+  }
+  return rc;
 }
