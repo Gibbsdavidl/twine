@@ -16,6 +16,7 @@ RcppExport SEXP twsplit(const SEXP v, const SEXP r) {
     string pattern = as<string>(r);
     vector<string>::iterator textIterator;
     vector<string> results;
+
     const char* error; int erroffset;
     const char *substring_start;
     int substring_length;
