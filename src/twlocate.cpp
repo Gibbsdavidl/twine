@@ -8,27 +8,19 @@ using std::vector;
 using std::string;
 using std::cout;
  
-RcppExport SEXP twlocate(const SEXP v, const SEXP r) {
+RcppExport SEXP twlocate(const SEXP v, const SEXP r, const SEXP b) {
     BEGIN_RCPP
-    vector<string> text = as< vector<string> >(v);
-    string pattern = as<string>(r);
-    vector<string>::iterator textIterator;
-    vector<int> results; 
-    char* start = 0;
-    char* end = 0;
-    string s;
+    vector<string> text = as<vector<string> >(v);
+    string         pattern = as<string>(r);
+    vector<int>    results; 
+    PCREWrapper    p(pattern);
     
-    pcrecpp::RE re(pattern);
-
-    for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
-      pcrecpp::StringPiece input(*textIterator);
-      start = (char*)input.data();
-      re.FindAndConsume(&input, &s);
-      end = (char*)input.data();
-      results.push_back(end-start-s.size()+1);
+    for (vector<string>::iterator t=text.begin(); t != text.end(); t++) {
+      vector<bool> res0;
+      p.locate(true, *t, res0);
+      results.push_back(res0);
     }
 
     return(Rcpp::wrap(results));
     END_RCPP
 }
-

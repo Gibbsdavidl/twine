@@ -29,8 +29,20 @@ class PCREWrapper
   bool setText(string & txt); 
   int  exec(int offset);
   int  match(bool single, vector<string> & res0);
-  int  locate(bool single, vector<int> & res0); 
+  int  locate(bool single, string & txt, vector<int> & res0); 
   int  detect(bool single, string & txt, vector<bool> & res0);
 };
 
 #endif
+
+//R> suppressMessages(library(inline))
+//R> src <- 'Rcpp::NumericVector v(4);
+//+         v[0] = R_NegInf;  // -Inf
+//+         v[1] = NA_REAL;   // NA
+//+         v[2] = R_PosInf;  // Inf
+//+         v[3] = 42;        // see the Hitchhiker Guide
+//+         return Rcpp::wrap(v);'
+//R> fun <- cxxfunction(signature(), src, plugin="Rcpp")
+//R> fun()
+//[1] -Inf   NA  Inf   42
+//R> 

@@ -99,10 +99,17 @@ int PCREWrapper::match(bool single, vector<string> & res0)
 }
 
 
-int PCREWrapper::locate(bool single, vector<int> & res0)
+int PCREWrapper::locate(bool single, string & txt, vector<int> & res0)
 {
-
-  return 1;
+  text = txt;
+  int rc = exec(0);  
+  if (rc > 0) {
+    for (int i = 0; i < rc; i++){
+      res0.push_back(ovector[i*2]+1);
+    }
+  } else {
+    res0.push_back(0);
+  return rc;
 }
 
 
@@ -110,7 +117,6 @@ int PCREWrapper::detect(bool single, string & txt, vector<bool> & res0)
 {
   text = txt;
   int rc = exec(0);  
-  printf("rc: %d\n", rc);
   if (rc > 0) {
     for (int i = 0; i < rc; i++){
       res0.push_back(true);
