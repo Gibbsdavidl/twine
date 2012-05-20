@@ -28,9 +28,10 @@ class PCREWrapper
   bool setPattern(string & pattern); 
   bool setText(string & txt); 
   int  exec(int offset);
-  int  match(bool single, vector<string> & res0);
-  int  locate(bool single, string & txt, vector<int> & res0); 
-  int  detect(bool single, string & txt, vector<bool> & res0);
+  int  match(string & txt, vector<string> & res0);
+  int  locate(string & txt, vector<int> & res0); 
+  int  detect(string & txt, vector<bool> & res0);
+  int  split(string & txt, vector<string> & res0);
 };
 
 #endif

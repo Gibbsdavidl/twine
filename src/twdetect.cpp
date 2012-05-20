@@ -8,7 +8,7 @@ using std::vector;
 using std::string;
 using std::cout;
  
-RcppExport SEXP twdetect(const SEXP v, const SEXP r, const SEXP b) {
+RcppExport SEXP twdetect(const SEXP v, const SEXP r) {
     BEGIN_RCPP
     vector<string>        text = as< vector<string> >(v);
     string                pattern = as<string>(r);
@@ -17,7 +17,7 @@ RcppExport SEXP twdetect(const SEXP v, const SEXP r, const SEXP b) {
     
     for (vector<string>::iterator t=text.begin(); t != text.end(); t++) {
       vector<bool> res0;
-      p.detect(true, *t, res0);
+      p.detect(*t, res0);
       results.push_back(res0);
     }
 

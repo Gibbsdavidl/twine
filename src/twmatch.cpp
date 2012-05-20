@@ -1,7 +1,7 @@
 #include "twmatch.h"
 #include <vector>
 #include <string>
-#include <pcrecpp.h>
+#include "PCREWrapper.h"
 
 using Rcpp::as;
 using std::vector;
@@ -9,30 +9,20 @@ using std::string;
 using std::cout;
 
  
-RcppExport SEXP twmatch(const SEXP v, const SEXP r, const SEXP b) {
+RcppExport SEXP twmatch(const SEXP v, const SEXP r) {
     BEGIN_RCPP
-    vector<string> text = as< vector<string> >(v);
-    string pattern = as<string>(r);
-    int fullmatch = as<int>(b);
-    vector<string>::iterator textIterator;
-    vector<string> results; 
-    string s;
-    
-    pcrecpp::RE re(pattern);
-    if (fullmatch == 1) {
-      for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
-	s = "";
-	re.FullMatch(*textIterator, &s);
-	results.push_back(s);
-      }
-    } else { // if fullmatch == 0
-      for (textIterator=text.begin(); textIterator != text.end(); textIterator++) {
-	s = "";
-	re.PartialMatch(*textIterator, &s);
-	results.push_back(s);
-      }
-    }
 
+    vector<string> text = as<vector<string> >(v);
+    string         pattern = as<string>(r);
+    vector<vector <string> >    results; 
+    PCREWrapper    p(pattern);
+    
+    for (vector<string>::iterator t=text.begin(); t != text.end(); t++) {
+      vector<string> res0;
+      p.match(*t, res0);
+      results.push_back(res0);
+    }
     return(Rcpp::wrap(results));
+
     END_RCPP
 }

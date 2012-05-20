@@ -1,3 +1,3 @@
 useDynLib(twine)
 exportPattern("^[[:alpha:]]+")
-export(twlen, twtoken, twmatch, twupper, twlower, twlocate)
+export(twlen, twtoken, twmatch, twupper, twlower, twlocate, twsplit)

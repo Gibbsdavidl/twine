@@ -19,7 +19,6 @@ twsplit <- function
 (v,          ##<< the string vector
  pattern     ##<< a regular expression.
  ) {
-
     ## Make the call...
     val <- .Call("twsplit",
                  as.character(v),

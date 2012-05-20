@@ -25,7 +25,6 @@ twmatch <- function
     val <- .Call("twmatch",
                  as.character(v),
                  as.character(pattern),
-                 as.integer(full),
                  PACKAGE="twine")
 
     val

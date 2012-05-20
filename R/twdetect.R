@@ -25,7 +25,6 @@ twdetect <- function
     val <- .Call("twdetect",
                  as.character(v),
                  as.character(pattern),
-                 as.integer(full),
                  PACKAGE="twine")
 
     val
