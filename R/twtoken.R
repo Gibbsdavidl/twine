@@ -14,8 +14,9 @@
 ## along with strvec.  If not, see <http://www.gnu.org/licenses/>.
 
 twtoken <- function
-### Takes a vector of strings, and a string to split by,
-### and returns a list of character vectors.
+### Takes a vector of strings, and a collection of characters
+### to split by, and returns a list of "tokenized" character vectors.
+
 (v,   ##<< the string vector
  s    ##<< the elements to split by.
  ) {
@@ -25,7 +26,6 @@ twtoken <- function
                  as.character(v),
                  as.character(s),
                  PACKAGE="twine")
-
-    unlist(val)
-    ### returns the vector of string lengths
+    val
+    ### returns the list of tokens
   }

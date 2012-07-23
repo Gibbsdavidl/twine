@@ -9,7 +9,7 @@ using std::vector;
 using std::string;
 using std::cout;
 
-#define OVECSIZE 128
+#define OVECSIZE 768 // == 3 * 256
 
 class PCREWrapper
 {
@@ -17,21 +17,35 @@ class PCREWrapper
   string pattern;
   string text;
   pcre* re;
-  int textLength;
   int* ovector;
-
+  
  public:
   PCREWrapper();
-  PCREWrapper(string pattern, string text);
+  PCREWrapper(string & pattern);
+  PCREWrapper(string & pattern, string & text);
   ~PCREWrapper();
-  bool setPattern(string pattern); 
-  bool setText(string txt); 
+
+  bool setPattern(string & pattern); 
+  bool setText(string & txt); 
   int  exec(int offset);
-  void match(bool single, vector<string> res0);
-  void locate(bool single, vector<int> res0); 
-  void detect(bool single, vector<bool> res0);
-
-
+  int  match(string & txt, vector<string> & res0);
+  int  locate(string & txt, vector<int> & res0); 
+  int  detect(string & txt, vector<bool> & res0);
+  int  detect_all(string & txt, vector<vector<bool> > & res0 );
+  int  locate_all(string & txt, vector<vector<int> > & res0); 
+  int  split(string & txt, vector<string> & res0);
 };
 
 #endif
+
+//R> suppressMessages(library(inline))
+//R> src <- 'Rcpp::NumericVector v(4);
+//+         v[0] = R_NegInf;  // -Inf
+//+         v[1] = NA_REAL;   // NA
+//+         v[2] = R_PosInf;  // Inf
+//+         v[3] = 42;        // see the Hitchhiker Guide
+//+         return Rcpp::wrap(v);'
+//R> fun <- cxxfunction(signature(), src, plugin="Rcpp")
+//R> fun()
+//[1] -Inf   NA  Inf   42
+//R> 

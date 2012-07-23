@@ -15,10 +15,12 @@
 
 twmatch <- function
 ### Takes a vector of strings, and a regular expression,
-### and returns a list of booleans for each potential match.
-(v,          ##<< the string vector
- pattern,    ##<< a regular expression.
- full=FALSE  ##<< full match (T/F)?  {F == partial match}.
+### and returns a list of character vectors. Each match is
+### returned, and after the first match, captured sub-strings
+### are listed.
+
+(v,         ##<< the string vector
+ pattern    ##<< a regular expression.
  ) {
 
     ## Make the call...
@@ -28,5 +30,5 @@ twmatch <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### returns the vector of matched strings
   }

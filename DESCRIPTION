@@ -7,5 +7,5 @@ Author: David L Gibbs
 Maintainer: David L Gibbs <gibbsdavidl@gmail.com>
 Description: fast string operations 
 License: GPL (>=2)
-Depends: Rcpp (>= 0.9.10)
+Depends: Rcpp (>= 0.9.10), testthat
 LinkingTo: Rcpp

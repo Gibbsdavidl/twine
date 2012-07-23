@@ -15,9 +15,10 @@
 
 twsplit <- function
 ### Takes a vector of strings, and a regular expression,
-### and returns a list of booleans for each potential match.
-(v,          ##<< the string vector
- pattern     ##<< a regular expression.
+### and returns a list of character vectors. 
+
+(v,          ##<< The string vector
+ pattern     ##<< A regular expression.
  ) {
     ## Make the call...
     val <- .Call("twsplit",
@@ -26,5 +27,5 @@ twsplit <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### Returns a list of character vectors
   }

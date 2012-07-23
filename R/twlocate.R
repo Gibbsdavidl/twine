@@ -15,7 +15,10 @@
 
 twlocate <- function
 ### Takes a vector of strings, and a regular expression,
-### and returns a list of booleans for each potential match.
+### and returns a list of positions for each potential match.
+### The positions of captured sub-strings is returned in vector
+### positions > 1.
+
 (v,          ##<< the string vector
  pattern     ##<< a regular expression.
  ) {
@@ -27,5 +30,26 @@ twlocate <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### returns the vector of positions matched in the text.
+  }
+
+
+twlocate_all <- function
+### Takes a vector of strings, and a regular expression,
+### and returns a list of positions for each potential match.
+### The positions of captured sub-strings is returned in vector
+### positions > 1.
+
+(v,          ##<< the string vector
+ pattern     ##<< a regular expression.
+ ) {
+
+    ## Make the call...
+    val <- .Call("twlocate_all",
+                 as.character(v),
+                 as.character(pattern),
+                 PACKAGE="twine")
+
+    val
+    ### returns the vector of positions matched in the text.
   }

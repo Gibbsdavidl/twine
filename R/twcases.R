@@ -14,7 +14,7 @@
 ## along with strvec.  If not, see <http://www.gnu.org/licenses/>.
 
 twupper <- function
-### Takes a vector of strings and returns a vector of str lengths.
+### Takes a vector of strings and transforms them to upper case.
 (vec ##<< the string vector
  ) {
 
@@ -24,12 +24,12 @@ twupper <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### returns character vectors
   }
 
 
 twlower <- function
-### Takes a vector of strings and returns a vector of str lengths.
+### Takes a vector of strings and transforms them to upper case.
 (vec ##<< the string vector
  ) {
 
@@ -39,6 +39,6 @@ twlower <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### returns character vectors
   }
 

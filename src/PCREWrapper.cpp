@@ -56,7 +56,7 @@ bool PCREWrapper::setPattern(string & ptrn)
 		    &erroffset,         /* for error offset */
 		    NULL);              /* use default character tables */
   if (re == NULL) {
-    printf("PCRE compilation failed at offset %d: %s\n", erroffset, error);
+    //printf("PCRE compilation failed at offset %d: %s\n", erroffset, error);
     return false;
   }
   return true;
@@ -84,7 +84,7 @@ int PCREWrapper::exec(int offset)
   if (rc < 0) {
     switch(rc) {
     case PCRE_ERROR_NOMATCH: break;
-    default: printf("Matching error %d\n", rc); break;
+    default:  break; //printf("Matching error %d\n", rc);
     }
     return -1;
   }
@@ -124,6 +124,27 @@ int PCREWrapper::locate(string & txt, vector<int> & res0)
 }
 
 
+int PCREWrapper::locate_all(string & txt, vector<vector<int> > & res0) 
+{
+  text = txt;
+  int offset = 0;
+  int rc = exec(offset);  
+  while(rc > 0) {
+    vector<int> res1;
+    for (int i = 0; i < rc; i++) {
+      res1.push_back(ovector[i*2]+1);
+    }
+    res0.push_back(res1);
+    offset = ovector[1];
+    rc = exec(offset);  
+  }
+  return offset;
+}
+
+
+
+
+
 int PCREWrapper::detect(string & txt, vector<bool> & res0)
 {
   text = txt;
@@ -137,6 +158,29 @@ int PCREWrapper::detect(string & txt, vector<bool> & res0)
   }
   return ovector[1];
 }
+
+// starting with a list of strings.
+// one line gets sent here.
+// repeatedly match on this line.
+// each match, push a T
+
+int PCREWrapper::detect_all(string & txt, vector<vector<bool> > & res0) 
+{
+  text = txt;
+  int offset = 0;
+  int rc = exec(offset);  
+  while(rc > 0) {
+    vector<bool> res1;
+    for (int j = 0; j < rc; j++) {
+      res1.push_back(true);
+    }
+    res0.push_back(res1);
+    offset = ovector[1];
+    rc = exec(offset);  
+  }
+  return offset;
+}
+
 
 
 int  PCREWrapper::split(string & txt, vector<string> & res0)

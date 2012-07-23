@@ -1,15 +1,26 @@
 
 Document!
 
+** DESCRIPTION … pcre check depends.
+
 Tests!
 
 Functions to add:
 
-*String reverse
 *Locate all
 *Match all
-*String split, see substr
 *String sub
 *String cat, incl insert point
+*kmer
+*string distance, one -> many
 
 
+
+To test:
+
+* match
+* locate
+* detect
+* detect_all
+* kmer
+* string dist

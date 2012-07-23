@@ -9,5 +9,5 @@
 * It is only useful to use RcppExport when the function is intended to be called
 * by .Call. See the thread http://thread.gmane.org/gmane.comp.lang.r.rcpp/649/focus=672
 * on Rcpp-devel for a misuse of RcppExport */
-RcppExport SEXP twdetect(const SEXP vec, const SEXP regex, const SEXP fullmatch) ;
+RcppExport SEXP twdetect(const SEXP vec, const SEXP regex) ;
 #endif

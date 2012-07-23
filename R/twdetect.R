@@ -16,9 +16,10 @@
 twdetect <- function
 ### Takes a vector of strings, and a regular expression,
 ### and returns a list of booleans for each potential match.
-(v,          ##<< the string vector
- pattern,    ##<< a regular expression.
- full=FALSE  ##<< full match (T/F)?  {F == partial match}.
+### Captured sub-strings are detected as well.
+
+(v,          ##<< the vector of strings
+ pattern     ##<< a regular expression.
  ) {
 
     ## Make the call...
@@ -28,5 +29,25 @@ twdetect <- function
                  PACKAGE="twine")
 
     val
-    ### returns the vector of string lengths
+    ### returns a list of boolean vectors
+  }
+
+
+twdetect_all <- function
+### Takes a vector of strings, and a regular expression,
+### and returns a list of booleans for each potential match.
+### Captured sub-strings are detected as well.
+
+(v,          ##<< the vector of strings
+ pattern     ##<< a regular expression.
+ ) {
+
+    ## Make the call...
+    val <- .Call("twdetect_all",
+                 as.character(v),
+                 as.character(pattern),
+                 PACKAGE="twine")
+
+    val
+    ### returns a list of boolean vectors
   }

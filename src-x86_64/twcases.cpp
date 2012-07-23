@@ -17,7 +17,6 @@ RcppExport SEXP twtoUpper(SEXP v) {
 }
 
 
-
 RcppExport SEXP twtoLower(SEXP v) {
     BEGIN_RCPP
     StringVector text(v);	

@@ -31,6 +31,8 @@ class PCREWrapper
   int  match(string & txt, vector<string> & res0);
   int  locate(string & txt, vector<int> & res0); 
   int  detect(string & txt, vector<bool> & res0);
+  int  detect_all(string & txt, vector<vector<bool> > & res0 );
+  int  locate_all(string & txt, vector<vector<int> > & res0); 
   int  split(string & txt, vector<string> & res0);
 };
 
