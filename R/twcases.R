@@ -39,6 +39,6 @@ twlower <- function
                  PACKAGE="twine")
 
     val
-    ### returns character vectors
+    ### returns character vectors, OK?
   }
 
